@@ -258,6 +258,25 @@
         DisplayTooltip();
     }
 
+    [JSInvokable]
+    public void Click(double x, double y)
+    {
+        foreach (var series in Series)
+        {
+            if (series.Visible && series.Contains(mouseX - MarginLeft, mouseY - MarginTop))
+            {
+                var data = series.DataAt(mouseX - MarginLeft, mouseY - MarginTop);
+
+                if (data != null)
+                {
+                    Console.WriteLine(data);
+                }
+
+                return;
+            }
+        }
+    }
+
     internal void DisplayTooltip()
     {
         if (Tooltip.Visible)
